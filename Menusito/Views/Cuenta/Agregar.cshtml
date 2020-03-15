@@ -1,0 +1,42 @@
+﻿@model  Menusito.Models.ViewModels.CuentaModel
+@{
+    ViewBag.Title = "Agregar Cuenta";
+    List<SelectListItem> itemsBanco = (List<SelectListItem>)ViewBag.itemsBanco;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Agregar", "Cuenta", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(d => d.NCuenta)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    @Html.TextBoxFor(d => d.NCuenta, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.NCuenta, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.LabelFor(d=>d.IdBanco)
+            @Html.DropDownListFor(d => d.IdBanco, itemsBanco, "Seleccione Pais", new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(d => d.Saldo)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Saldo, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Saldo, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-in"></span> Guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+}

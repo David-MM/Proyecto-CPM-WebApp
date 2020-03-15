@@ -1,0 +1,1562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BANCO">
+    <Key>
+      <PropertyRef Name="IdBanco" />
+    </Key>
+    <Property Name="IdBanco" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CUENTA" Relationship="Self.FK_CuentaBanco" FromRole="BANCO" ToRole="CUENTA" />
+  </EntityType>
+  <EntityType Name="BODEGA">
+    <Key>
+      <PropertyRef Name="IdBodega" />
+    </Key>
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CIUDAD" Relationship="Self.FK_BodegaCiudad" FromRole="BODEGA" ToRole="CIUDAD" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_BodegaUsuario" FromRole="BODEGA" ToRole="USUARIO" />
+    <NavigationProperty Name="COMPRADETALLE" Relationship="Self.FK_CompraDetalleBodega" FromRole="BODEGA" ToRole="COMPRADETALLE" />
+    <NavigationProperty Name="EXISTENCIA" Relationship="Self.FK_ExistenciaBodega" FromRole="BODEGA" ToRole="EXISTENCIA" />
+    <NavigationProperty Name="PRODUCCIONDETALLE" Relationship="Self.FK_ProduccionDetalleBodega" FromRole="BODEGA" ToRole="PRODUCCIONDETALLE" />
+    <NavigationProperty Name="TRANSACCION" Relationship="Self.FK_TransaccionBodega" FromRole="BODEGA" ToRole="TRANSACCION" />
+    <NavigationProperty Name="VENTADETALLE" Relationship="Self.FK_VentaDetalleBodega" FromRole="BODEGA" ToRole="VENTADETALLE" />
+  </EntityType>
+  <EntityType Name="CHEQUE">
+    <Key>
+      <PropertyRef Name="IdCheque" />
+    </Key>
+    <Property Name="IdCheque" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdCuenta" Type="Int32" Nullable="false" />
+    <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Valor" Type="Double" Nullable="false" />
+    <Property Name="Proceso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CUENTA" Relationship="Self.FK_ChequeCuenta" FromRole="CHEQUE" ToRole="CUENTA" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_ChequeProveedor" FromRole="CHEQUE" ToRole="PROVEEDOR" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_ChequeUsuario" FromRole="CHEQUE" ToRole="USUARIO" />
+    <NavigationProperty Name="PAGO" Relationship="Self.FK_PagoCheque" FromRole="CHEQUE" ToRole="PAGO" />
+  </EntityType>
+  <EntityType Name="CIUDAD">
+    <Key>
+      <PropertyRef Name="IdCiudad" />
+    </Key>
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <Property Name="IdPais" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_BodegaCiudad" FromRole="CIUDAD" ToRole="BODEGA" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.FK_ClienteCiudad" FromRole="CIUDAD" ToRole="CLIENTE" />
+    <NavigationProperty Name="PAIS" Relationship="Self.FK_Pais" FromRole="CIUDAD" ToRole="PAIS" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_ProveedorCiudad" FromRole="CIUDAD" ToRole="PROVEEDOR" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LimiteCredito" Type="Double" Nullable="false" />
+    <Property Name="Descuento" Type="Double" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CIUDAD" Relationship="Self.FK_ClienteCiudad" FromRole="CLIENTE" ToRole="CIUDAD" />
+    <NavigationProperty Name="DEPOSITO" Relationship="Self.FK_DepositoCliente" FromRole="CLIENTE" ToRole="DEPOSITO" />
+    <NavigationProperty Name="VENTA" Relationship="Self.FK_VentaCliente" FromRole="CLIENTE" ToRole="VENTA" />
+  </EntityType>
+  <EntityType Name="COBRO">
+    <Key>
+      <PropertyRef Name="IdCobro" />
+    </Key>
+    <Property Name="IdCobro" Type="Int32" Nullable="false" />
+    <Property Name="IdDeposito" Type="Int32" Nullable="false" />
+    <Property Name="IdVenta" Type="Int32" Nullable="false" />
+    <Property Name="ValorPagado" Type="Double" Nullable="false" />
+    <NavigationProperty Name="DEPOSITO" Relationship="Self.FK_CobroDeposito" FromRole="COBRO" ToRole="DEPOSITO" />
+    <NavigationProperty Name="VENTA" Relationship="Self.FK_CobroVenta" FromRole="COBRO" ToRole="VENTA" />
+  </EntityType>
+  <EntityType Name="COMPRA">
+    <Key>
+      <PropertyRef Name="IdCompra" />
+    </Key>
+    <Property Name="IdCompra" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Proceso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EstadoPago" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="COMPRADETALLE" Relationship="Self.FK_CompraDetalleCompra" FromRole="COMPRA" ToRole="COMPRADETALLE" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_CompraProveedor" FromRole="COMPRA" ToRole="PROVEEDOR" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_CompraUsuario" FromRole="COMPRA" ToRole="USUARIO" />
+    <NavigationProperty Name="PAGO" Relationship="Self.FK_PagoCompra" FromRole="COMPRA" ToRole="PAGO" />
+  </EntityType>
+  <EntityType Name="COMPRADETALLE">
+    <Key>
+      <PropertyRef Name="IdCompra" />
+      <PropertyRef Name="IdProducto" />
+      <PropertyRef Name="IdBodega" />
+      <PropertyRef Name="FechaVecimiento" />
+    </Key>
+    <Property Name="IdCompra" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <Property Name="FechaVecimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Double" Nullable="false" />
+    <Property Name="ISV" Type="Double" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_CompraDetalleBodega" FromRole="COMPRADETALLE" ToRole="BODEGA" />
+    <NavigationProperty Name="COMPRA" Relationship="Self.FK_CompraDetalleCompra" FromRole="COMPRADETALLE" ToRole="COMPRA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_CompraDetalleProducto" FromRole="COMPRADETALLE" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="CUENTA">
+    <Key>
+      <PropertyRef Name="IdCuenta" />
+    </Key>
+    <Property Name="IdCuenta" Type="Int32" Nullable="false" />
+    <Property Name="IdBanco" Type="Int32" Nullable="false" />
+    <Property Name="Saldo" Type="Double" Nullable="false" />
+    <Property Name="NCuenta" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BANCO" Relationship="Self.FK_CuentaBanco" FromRole="CUENTA" ToRole="BANCO" />
+    <NavigationProperty Name="CHEQUE" Relationship="Self.FK_ChequeCuenta" FromRole="CUENTA" ToRole="CHEQUE" />
+    <NavigationProperty Name="DEPOSITO" Relationship="Self.FK_DepositoCuenta" FromRole="CUENTA" ToRole="DEPOSITO" />
+  </EntityType>
+  <EntityType Name="DEPARTAMENTO">
+    <Key>
+      <PropertyRef Name="IdDepartamento" />
+    </Key>
+    <Property Name="IdDepartamento" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_Departamento" FromRole="DEPARTAMENTO" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="DEPOSITO">
+    <Key>
+      <PropertyRef Name="IdDeposito" />
+    </Key>
+    <Property Name="IdDeposito" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdCuenta" Type="Int32" Nullable="false" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Valor" Type="Double" Nullable="false" />
+    <Property Name="Proceso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.FK_DepositoCliente" FromRole="DEPOSITO" ToRole="CLIENTE" />
+    <NavigationProperty Name="COBRO" Relationship="Self.FK_CobroDeposito" FromRole="DEPOSITO" ToRole="COBRO" />
+    <NavigationProperty Name="CUENTA" Relationship="Self.FK_DepositoCuenta" FromRole="DEPOSITO" ToRole="CUENTA" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_DepositoUsuario" FromRole="DEPOSITO" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="EMPLEADO">
+    <Key>
+      <PropertyRef Name="IdEmpleado" />
+    </Key>
+    <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="IdDepartamento" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK_Departamento" FromRole="EMPLEADO" ToRole="DEPARTAMENTO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_Empleado" FromRole="EMPLEADO" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="EXISTENCIA">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+      <PropertyRef Name="IdBodega" />
+      <PropertyRef Name="FechaVencimiento" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_ExistenciaBodega" FromRole="EXISTENCIA" ToRole="BODEGA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_ExistenciaProducto" FromRole="EXISTENCIA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="PAGO">
+    <Key>
+      <PropertyRef Name="IdPago" />
+    </Key>
+    <Property Name="IdPago" Type="Int32" Nullable="false" />
+    <Property Name="IdCheque" Type="Int32" Nullable="false" />
+    <Property Name="IdCompra" Type="Int32" Nullable="false" />
+    <Property Name="ValorPagado" Type="Double" Nullable="false" />
+    <NavigationProperty Name="CHEQUE" Relationship="Self.FK_PagoCheque" FromRole="PAGO" ToRole="CHEQUE" />
+    <NavigationProperty Name="COMPRA" Relationship="Self.FK_PagoCompra" FromRole="PAGO" ToRole="COMPRA" />
+  </EntityType>
+  <EntityType Name="PAIS">
+    <Key>
+      <PropertyRef Name="IdPais" />
+    </Key>
+    <Property Name="IdPais" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CIUDAD" Relationship="Self.FK_Pais" FromRole="PAIS" ToRole="CIUDAD" />
+  </EntityType>
+  <EntityType Name="PRODUCCION">
+    <Key>
+      <PropertyRef Name="IdProduccion" />
+    </Key>
+    <Property Name="IdProduccion" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Costo" Type="Double" Nullable="false" />
+    <Property Name="Proceso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCCIONDETALLE" Relationship="Self.FK_ProduccionDetalleProduccion" FromRole="PRODUCCION" ToRole="PRODUCCIONDETALLE" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_ProduccionProducto" FromRole="PRODUCCION" ToRole="PRODUCTO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_ProduccionUsuario" FromRole="PRODUCCION" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="PRODUCCIONDETALLE">
+    <Key>
+      <PropertyRef Name="IdProduccion" />
+      <PropertyRef Name="IdProductoMaterial" />
+      <PropertyRef Name="IdBodega" />
+      <PropertyRef Name="FechaVecimiento" />
+    </Key>
+    <Property Name="IdProduccion" Type="Int32" Nullable="false" />
+    <Property Name="IdProductoMaterial" Type="Int32" Nullable="false" />
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <Property Name="FechaVecimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_ProduccionDetalleBodega" FromRole="PRODUCCIONDETALLE" ToRole="BODEGA" />
+    <NavigationProperty Name="PRODUCCION" Relationship="Self.FK_ProduccionDetalleProduccion" FromRole="PRODUCCIONDETALLE" ToRole="PRODUCCION" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ExistenciaMinima" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Double" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="COMPRADETALLE" Relationship="Self.FK_CompraDetalleProducto" FromRole="PRODUCTO" ToRole="COMPRADETALLE" />
+    <NavigationProperty Name="EXISTENCIA" Relationship="Self.FK_ExistenciaProducto" FromRole="PRODUCTO" ToRole="EXISTENCIA" />
+    <NavigationProperty Name="PRODUCCION" Relationship="Self.FK_ProduccionProducto" FromRole="PRODUCTO" ToRole="PRODUCCION" />
+    <NavigationProperty Name="RECETA" Relationship="Self.FK_RecetaProducto" FromRole="PRODUCTO" ToRole="RECETA" />
+    <NavigationProperty Name="TRANSACCION" Relationship="Self.FK_TransaccionProducto" FromRole="PRODUCTO" ToRole="TRANSACCION" />
+    <NavigationProperty Name="VENTADETALLE" Relationship="Self.FK_VentaDetalleProducto" FromRole="PRODUCTO" ToRole="VENTADETALLE" />
+  </EntityType>
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="IdProveedor" />
+    </Key>
+    <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LimiteCredito" Type="Double" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CHEQUE" Relationship="Self.FK_ChequeProveedor" FromRole="PROVEEDOR" ToRole="CHEQUE" />
+    <NavigationProperty Name="CIUDAD" Relationship="Self.FK_ProveedorCiudad" FromRole="PROVEEDOR" ToRole="CIUDAD" />
+    <NavigationProperty Name="COMPRA" Relationship="Self.FK_CompraProveedor" FromRole="PROVEEDOR" ToRole="COMPRA" />
+  </EntityType>
+  <EntityType Name="RECETA">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+      <PropertyRef Name="IdProductoMaterial" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdProductoMaterial" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_RecetaProducto" FromRole="RECETA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TRANSACCION">
+    <Key>
+      <PropertyRef Name="IdTransaccion" />
+    </Key>
+    <Property Name="IdTransaccion" Type="Int32" Nullable="false" />
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <Property Name="IdOrden" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_TransaccionBodega" FromRole="TRANSACCION" ToRole="BODEGA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_TransaccionProducto" FromRole="TRANSACCION" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contrasenia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rol" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_BodegaUsuario" FromRole="USUARIO" ToRole="BODEGA" />
+    <NavigationProperty Name="CHEQUE" Relationship="Self.FK_ChequeUsuario" FromRole="USUARIO" ToRole="CHEQUE" />
+    <NavigationProperty Name="COMPRA" Relationship="Self.FK_CompraUsuario" FromRole="USUARIO" ToRole="COMPRA" />
+    <NavigationProperty Name="DEPOSITO" Relationship="Self.FK_DepositoUsuario" FromRole="USUARIO" ToRole="DEPOSITO" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_Empleado" FromRole="USUARIO" ToRole="EMPLEADO" />
+    <NavigationProperty Name="PRODUCCION" Relationship="Self.FK_ProduccionUsuario" FromRole="USUARIO" ToRole="PRODUCCION" />
+    <NavigationProperty Name="VENTA" Relationship="Self.FK_VentaUsuario" FromRole="USUARIO" ToRole="VENTA" />
+  </EntityType>
+  <EntityType Name="VENTA">
+    <Key>
+      <PropertyRef Name="IdVenta" />
+    </Key>
+    <Property Name="IdVenta" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Proceso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EstadoCobro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.FK_VentaCliente" FromRole="VENTA" ToRole="CLIENTE" />
+    <NavigationProperty Name="COBRO" Relationship="Self.FK_CobroVenta" FromRole="VENTA" ToRole="COBRO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_VentaUsuario" FromRole="VENTA" ToRole="USUARIO" />
+    <NavigationProperty Name="VENTADETALLE" Relationship="Self.FK_VentaDetalleVenta" FromRole="VENTA" ToRole="VENTADETALLE" />
+  </EntityType>
+  <EntityType Name="VENTADETALLE">
+    <Key>
+      <PropertyRef Name="IdVenta" />
+      <PropertyRef Name="IdProducto" />
+      <PropertyRef Name="IdBodega" />
+      <PropertyRef Name="FechaVecimiento" />
+    </Key>
+    <Property Name="IdVenta" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdBodega" Type="Int32" Nullable="false" />
+    <Property Name="FechaVecimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Double" Nullable="false" />
+    <Property Name="ISV" Type="Double" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="Self.FK_VentaDetalleBodega" FromRole="VENTADETALLE" ToRole="BODEGA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_VentaDetalleProducto" FromRole="VENTADETALLE" ToRole="PRODUCTO" />
+    <NavigationProperty Name="VENTA" Relationship="Self.FK_VentaDetalleVenta" FromRole="VENTADETALLE" ToRole="VENTA" />
+  </EntityType>
+  <Association Name="FK_CuentaBanco">
+    <End Role="BANCO" Type="Self.BANCO" Multiplicity="1" />
+    <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANCO">
+        <PropertyRef Name="IdBanco" />
+      </Principal>
+      <Dependent Role="CUENTA">
+        <PropertyRef Name="IdBanco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BodegaCiudad">
+    <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="1" />
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CIUDAD">
+        <PropertyRef Name="IdCiudad" />
+      </Principal>
+      <Dependent Role="BODEGA">
+        <PropertyRef Name="IdCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BodegaUsuario">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="BODEGA">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompraDetalleBodega">
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="COMPRADETALLE" Type="Self.COMPRADETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="COMPRADETALLE">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExistenciaBodega">
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="EXISTENCIA" Type="Self.EXISTENCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="EXISTENCIA">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduccionDetalleBodega">
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="PRODUCCIONDETALLE" Type="Self.PRODUCCIONDETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="PRODUCCIONDETALLE">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransaccionBodega">
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="TRANSACCION" Type="Self.TRANSACCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="TRANSACCION">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VentaDetalleBodega">
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="VENTADETALLE" Type="Self.VENTADETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="VENTADETALLE">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChequeCuenta">
+    <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="1" />
+    <End Role="CHEQUE" Type="Self.CHEQUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUENTA">
+        <PropertyRef Name="IdCuenta" />
+      </Principal>
+      <Dependent Role="CHEQUE">
+        <PropertyRef Name="IdCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChequeProveedor">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="CHEQUE" Type="Self.CHEQUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IdProveedor" />
+      </Principal>
+      <Dependent Role="CHEQUE">
+        <PropertyRef Name="IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChequeUsuario">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="CHEQUE" Type="Self.CHEQUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="CHEQUE">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PagoCheque">
+    <End Role="CHEQUE" Type="Self.CHEQUE" Multiplicity="1" />
+    <End Role="PAGO" Type="Self.PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHEQUE">
+        <PropertyRef Name="IdCheque" />
+      </Principal>
+      <Dependent Role="PAGO">
+        <PropertyRef Name="IdCheque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteCiudad">
+    <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="1" />
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CIUDAD">
+        <PropertyRef Name="IdCiudad" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="IdCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pais">
+    <End Role="PAIS" Type="Self.PAIS" Multiplicity="1" />
+    <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAIS">
+        <PropertyRef Name="IdPais" />
+      </Principal>
+      <Dependent Role="CIUDAD">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProveedorCiudad">
+    <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="1" />
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CIUDAD">
+        <PropertyRef Name="IdCiudad" />
+      </Principal>
+      <Dependent Role="PROVEEDOR">
+        <PropertyRef Name="IdCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepositoCliente">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="DEPOSITO" Type="Self.DEPOSITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="DEPOSITO">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VentaCliente">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="VENTA">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CobroDeposito">
+    <End Role="DEPOSITO" Type="Self.DEPOSITO" Multiplicity="1" />
+    <End Role="COBRO" Type="Self.COBRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPOSITO">
+        <PropertyRef Name="IdDeposito" />
+      </Principal>
+      <Dependent Role="COBRO">
+        <PropertyRef Name="IdDeposito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CobroVenta">
+    <End Role="VENTA" Type="Self.VENTA" Multiplicity="1" />
+    <End Role="COBRO" Type="Self.COBRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VENTA">
+        <PropertyRef Name="IdVenta" />
+      </Principal>
+      <Dependent Role="COBRO">
+        <PropertyRef Name="IdVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompraDetalleCompra">
+    <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="1" />
+    <End Role="COMPRADETALLE" Type="Self.COMPRADETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPRA">
+        <PropertyRef Name="IdCompra" />
+      </Principal>
+      <Dependent Role="COMPRADETALLE">
+        <PropertyRef Name="IdCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompraProveedor">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="IdProveedor" />
+      </Principal>
+      <Dependent Role="COMPRA">
+        <PropertyRef Name="IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompraUsuario">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="COMPRA">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PagoCompra">
+    <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="1" />
+    <End Role="PAGO" Type="Self.PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPRA">
+        <PropertyRef Name="IdCompra" />
+      </Principal>
+      <Dependent Role="PAGO">
+        <PropertyRef Name="IdCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompraDetalleProducto">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="COMPRADETALLE" Type="Self.COMPRADETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="COMPRADETALLE">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepositoCuenta">
+    <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="1" />
+    <End Role="DEPOSITO" Type="Self.DEPOSITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUENTA">
+        <PropertyRef Name="IdCuenta" />
+      </Principal>
+      <Dependent Role="DEPOSITO">
+        <PropertyRef Name="IdCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departamento">
+    <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTAMENTO">
+        <PropertyRef Name="IdDepartamento" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="IdDepartamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepositoUsuario">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DEPOSITO" Type="Self.DEPOSITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="DEPOSITO">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="IdEmpleado" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="IdEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExistenciaProducto">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="EXISTENCIA" Type="Self.EXISTENCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="EXISTENCIA">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduccionDetalleProduccion">
+    <End Role="PRODUCCION" Type="Self.PRODUCCION" Multiplicity="1" />
+    <End Role="PRODUCCIONDETALLE" Type="Self.PRODUCCIONDETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCCION">
+        <PropertyRef Name="IdProduccion" />
+      </Principal>
+      <Dependent Role="PRODUCCIONDETALLE">
+        <PropertyRef Name="IdProduccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduccionProducto">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="PRODUCCION" Type="Self.PRODUCCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="PRODUCCION">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduccionUsuario">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="PRODUCCION" Type="Self.PRODUCCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="PRODUCCION">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecetaProducto">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="RECETA" Type="Self.RECETA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="RECETA">
+        <PropertyRef Name="IdProductoMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransaccionProducto">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="TRANSACCION" Type="Self.TRANSACCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="TRANSACCION">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VentaDetalleProducto">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="VENTADETALLE" Type="Self.VENTADETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="VENTADETALLE">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VentaUsuario">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="VENTA">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VentaDetalleVenta">
+    <End Role="VENTA" Type="Self.VENTA" Multiplicity="1" />
+    <End Role="VENTADETALLE" Type="Self.VENTADETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VENTA">
+        <PropertyRef Name="IdVenta" />
+      </Principal>
+      <Dependent Role="VENTADETALLE">
+        <PropertyRef Name="IdVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CPMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BANCO" EntityType="Self.BANCO" />
+    <EntitySet Name="BODEGA" EntityType="Self.BODEGA" />
+    <EntitySet Name="CHEQUE" EntityType="Self.CHEQUE" />
+    <EntitySet Name="CIUDAD" EntityType="Self.CIUDAD" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+    <EntitySet Name="COBRO" EntityType="Self.COBRO" />
+    <EntitySet Name="COMPRA" EntityType="Self.COMPRA" />
+    <EntitySet Name="COMPRADETALLE" EntityType="Self.COMPRADETALLE" />
+    <EntitySet Name="CUENTA" EntityType="Self.CUENTA" />
+    <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" />
+    <EntitySet Name="DEPOSITO" EntityType="Self.DEPOSITO" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
+    <EntitySet Name="EXISTENCIA" EntityType="Self.EXISTENCIA" />
+    <EntitySet Name="PAGO" EntityType="Self.PAGO" />
+    <EntitySet Name="PAIS" EntityType="Self.PAIS" />
+    <EntitySet Name="PRODUCCION" EntityType="Self.PRODUCCION" />
+    <EntitySet Name="PRODUCCIONDETALLE" EntityType="Self.PRODUCCIONDETALLE" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+    <EntitySet Name="RECETA" EntityType="Self.RECETA" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TRANSACCION" EntityType="Self.TRANSACCION" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <EntitySet Name="VENTA" EntityType="Self.VENTA" />
+    <EntitySet Name="VENTADETALLE" EntityType="Self.VENTADETALLE" />
+    <AssociationSet Name="FK_CuentaBanco" Association="Self.FK_CuentaBanco">
+      <End Role="BANCO" EntitySet="BANCO" />
+      <End Role="CUENTA" EntitySet="CUENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BodegaCiudad" Association="Self.FK_BodegaCiudad">
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+      <End Role="BODEGA" EntitySet="BODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BodegaUsuario" Association="Self.FK_BodegaUsuario">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="BODEGA" EntitySet="BODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompraDetalleBodega" Association="Self.FK_CompraDetalleBodega">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="COMPRADETALLE" EntitySet="COMPRADETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExistenciaBodega" Association="Self.FK_ExistenciaBodega">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="EXISTENCIA" EntitySet="EXISTENCIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduccionDetalleBodega" Association="Self.FK_ProduccionDetalleBodega">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="PRODUCCIONDETALLE" EntitySet="PRODUCCIONDETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransaccionBodega" Association="Self.FK_TransaccionBodega">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="TRANSACCION" EntitySet="TRANSACCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VentaDetalleBodega" Association="Self.FK_VentaDetalleBodega">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="VENTADETALLE" EntitySet="VENTADETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChequeCuenta" Association="Self.FK_ChequeCuenta">
+      <End Role="CUENTA" EntitySet="CUENTA" />
+      <End Role="CHEQUE" EntitySet="CHEQUE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChequeProveedor" Association="Self.FK_ChequeProveedor">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="CHEQUE" EntitySet="CHEQUE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChequeUsuario" Association="Self.FK_ChequeUsuario">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="CHEQUE" EntitySet="CHEQUE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PagoCheque" Association="Self.FK_PagoCheque">
+      <End Role="CHEQUE" EntitySet="CHEQUE" />
+      <End Role="PAGO" EntitySet="PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteCiudad" Association="Self.FK_ClienteCiudad">
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pais" Association="Self.FK_Pais">
+      <End Role="PAIS" EntitySet="PAIS" />
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProveedorCiudad" Association="Self.FK_ProveedorCiudad">
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepositoCliente" Association="Self.FK_DepositoCliente">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="DEPOSITO" EntitySet="DEPOSITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VentaCliente" Association="Self.FK_VentaCliente">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="VENTA" EntitySet="VENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CobroDeposito" Association="Self.FK_CobroDeposito">
+      <End Role="DEPOSITO" EntitySet="DEPOSITO" />
+      <End Role="COBRO" EntitySet="COBRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CobroVenta" Association="Self.FK_CobroVenta">
+      <End Role="VENTA" EntitySet="VENTA" />
+      <End Role="COBRO" EntitySet="COBRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompraDetalleCompra" Association="Self.FK_CompraDetalleCompra">
+      <End Role="COMPRA" EntitySet="COMPRA" />
+      <End Role="COMPRADETALLE" EntitySet="COMPRADETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompraProveedor" Association="Self.FK_CompraProveedor">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="COMPRA" EntitySet="COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompraUsuario" Association="Self.FK_CompraUsuario">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="COMPRA" EntitySet="COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PagoCompra" Association="Self.FK_PagoCompra">
+      <End Role="COMPRA" EntitySet="COMPRA" />
+      <End Role="PAGO" EntitySet="PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompraDetalleProducto" Association="Self.FK_CompraDetalleProducto">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="COMPRADETALLE" EntitySet="COMPRADETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepositoCuenta" Association="Self.FK_DepositoCuenta">
+      <End Role="CUENTA" EntitySet="CUENTA" />
+      <End Role="DEPOSITO" EntitySet="DEPOSITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departamento" Association="Self.FK_Departamento">
+      <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepositoUsuario" Association="Self.FK_DepositoUsuario">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DEPOSITO" EntitySet="DEPOSITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado" Association="Self.FK_Empleado">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExistenciaProducto" Association="Self.FK_ExistenciaProducto">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="EXISTENCIA" EntitySet="EXISTENCIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduccionDetalleProduccion" Association="Self.FK_ProduccionDetalleProduccion">
+      <End Role="PRODUCCION" EntitySet="PRODUCCION" />
+      <End Role="PRODUCCIONDETALLE" EntitySet="PRODUCCIONDETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduccionProducto" Association="Self.FK_ProduccionProducto">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="PRODUCCION" EntitySet="PRODUCCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduccionUsuario" Association="Self.FK_ProduccionUsuario">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PRODUCCION" EntitySet="PRODUCCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecetaProducto" Association="Self.FK_RecetaProducto">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="RECETA" EntitySet="RECETA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransaccionProducto" Association="Self.FK_TransaccionProducto">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="TRANSACCION" EntitySet="TRANSACCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VentaDetalleProducto" Association="Self.FK_VentaDetalleProducto">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="VENTADETALLE" EntitySet="VENTADETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VentaUsuario" Association="Self.FK_VentaUsuario">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="VENTA" EntitySet="VENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VentaDetalleVenta" Association="Self.FK_VentaDetalleVenta">
+      <End Role="VENTA" EntitySet="VENTA" />
+      <End Role="VENTADETALLE" EntitySet="VENTADETALLE" />
+    </AssociationSet>
+    <EntitySet Name="View_ProductosConExistencia" EntityType="CPMModel.View_ProductosConExistencia" />
+    <EntitySet Name="vw_EmpleadosActivos" EntityType="CPMModel.vw_EmpleadosActivos" />
+    <EntitySet Name="vw_UsuariosActivos" EntityType="CPMModel.vw_UsuariosActivos" />
+    <FunctionImport Name="f_EmpleadoRoll" IsComposable="true" ReturnType="Collection(CPMModel.f_EmpleadoRoll_Result)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Fn_Cliente" IsComposable="true" ReturnType="Collection(CPMModel.Fn_Cliente_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Fn_Proveedor" IsComposable="true" ReturnType="Collection(CPMModel.Fn_Proveedor_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_Bodega" ReturnType="Collection(CPMModel.PRO_Bodega_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_BodegaMovimientos" ReturnType="Collection(CPMModel.PRO_BodegaMovimientos_Result)">
+      <Parameter Name="Tipo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_C_Empleados" ReturnType="Collection(CPMModel.PRO_C_Empleados_Result)" />
+    <FunctionImport Name="PRO_C_Usuario" ReturnType="Collection(CPMModel.PRO_C_Usuario_Result)">
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_CompraDetalle" ReturnType="Collection(CPMModel.PRO_CompraDetalle_Result)">
+      <Parameter Name="Compra" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_Compras" ReturnType="Collection(CPMModel.PRO_Compras_Result)">
+      <Parameter Name="Proceso" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_Productos" ReturnType="Collection(CPMModel.PRO_Productos_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_ProductosElaborados" ReturnType="Collection(CPMModel.PRO_ProductosElaborados_Result)">
+      <Parameter Name="Producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_VentaDetalle" ReturnType="Collection(CPMModel.PRO_VentaDetalle_Result)">
+      <Parameter Name="Venta" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_Ventas" ReturnType="Collection(CPMModel.PRO_Ventas_Result)">
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarBanco">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarBodega">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdCiudad" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarCliente">
+      <Parameter Name="idCiudad" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Contacto" Mode="In" Type="String" />
+      <Parameter Name="Tel" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="LimiteCredito" Mode="In" Type="Double" />
+      <Parameter Name="Descuento" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarCuenta">
+      <Parameter Name="NCuenta" Mode="In" Type="String" />
+      <Parameter Name="IdBanco" Mode="In" Type="Int32" />
+      <Parameter Name="Saldo" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarEmpleado">
+      <Parameter Name="idDepto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarProducto">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ExistenciaMinima" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarProveedor">
+      <Parameter Name="idCiudad" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Contacto" Mode="In" Type="String" />
+      <Parameter Name="Tel" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="LimiteCredito" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarReceta">
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="IdProductoMaterial" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarUsuario">
+      <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Rol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Bancos" ReturnType="Collection(CPMModel.SP_Bancos_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Cuentas" ReturnType="Collection(CPMModel.SP_Cuentas_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarBanco">
+      <Parameter Name="idBanco" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarBodega">
+      <Parameter Name="IdBodega" Mode="In" Type="Int32" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdCiudad" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarCliente">
+      <Parameter Name="idCliente" Mode="In" Type="Int32" />
+      <Parameter Name="idCiudad" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Contacto" Mode="In" Type="String" />
+      <Parameter Name="Tel" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="LimiteCredito" Mode="In" Type="Double" />
+      <Parameter Name="Descuento" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarCuenta">
+      <Parameter Name="IdCuenta" Mode="In" Type="Int32" />
+      <Parameter Name="NCuenta" Mode="In" Type="String" />
+      <Parameter Name="IdBanco" Mode="In" Type="Int32" />
+      <Parameter Name="Saldo" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarEmpleado">
+      <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="idDepto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarProducto">
+      <Parameter Name="idProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ExistenciaMinima" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarProveedor">
+      <Parameter Name="idProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="idCiudad" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Contacto" Mode="In" Type="String" />
+      <Parameter Name="Tel" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="LimiteCredito" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EditarUsuario">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Rol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Eliminar">
+      <Parameter Name="Tabla" Mode="In" Type="String" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarCliente">
+      <Parameter Name="idCliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CPMModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CPMModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OrdenCompra">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OrdenCompraDetalle">
+      <Parameter Name="IdCompra" Mode="In" Type="Int32" />
+      <Parameter Name="Idproducto" Mode="In" Type="Int32" />
+      <Parameter Name="IdBodega" Mode="In" Type="Int32" />
+      <Parameter Name="FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Valor" Mode="In" Type="Double" />
+      <Parameter Name="ISV" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OrdenIstTransaccion">
+      <Parameter Name="idbodega" Mode="In" Type="Int32" />
+      <Parameter Name="idOrden" Mode="In" Type="Int32" />
+      <Parameter Name="idProduto" Mode="In" Type="Int32" />
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo" Mode="In" Type="String" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Produccion">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Bodegaid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProduccionDetalle">
+      <Parameter Name="IdProduccion" Mode="In" Type="Int32" />
+      <Parameter Name="IdProductoMaterial" Mode="In" Type="Int32" />
+      <Parameter Name="IdBodega" Mode="In" Type="Int32" />
+      <Parameter Name="FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Requisito">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_RequisitoDetalle">
+      <Parameter Name="IdVenta" Mode="In" Type="Int32" />
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="IdBodega" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Valor" Mode="In" Type="Double" />
+      <Parameter Name="ISV" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdProcesoCompra">
+      <Parameter Name="idCompra" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="Validar_Usuario" ReturnType="Collection(Int32)">
+      <Parameter Name="Usuarioname" Mode="In" Type="String" />
+      <Parameter Name="Psw" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ConsultarProductoEnBodega" ReturnType="Collection(CPMModel.SP_ConsultarProductoEnBodega_Result)">
+      <Parameter Name="Produnto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ProductosEnBodegaFecha" ReturnType="Collection(CPMModel.SP_ProductosEnBodegaFecha_Result)">
+      <Parameter Name="Pro" Mode="In" Type="Int32" />
+      <Parameter Name="Bod" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ListarCuentas" ReturnType="Collection(CPMModel.SP_ListarCuentas_Result)">
+      <Parameter Name="estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarCheque">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdCuenta" Mode="In" Type="Int32" />
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="Valor" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Cheques" ReturnType="Collection(CPMModel.SP_Cheques_Result)" />
+    <FunctionImport Name="SP_Deposito" ReturnType="Collection(CPMModel.SP_Deposito_Result)" />
+    <FunctionImport Name="sp_AgregarDeposito">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdCuenta" Mode="In" Type="Int32" />
+      <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+      <Parameter Name="Valor" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="Fn_ListaReceta" IsComposable="true" ReturnType="Collection(CPMModel.Fn_ListaReceta_Result)">
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ListarProducosConOsinReceta" ReturnType="Collection(CPMModel.SP_ListarProducosConOsinReceta_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ProductoFiltrado" ReturnType="Collection(CPMModel.SP_ProductoFiltrado_Result)">
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ConsultarDetalleTransaccion" ReturnType="Collection(CPMModel.SP_ConsultarDetalleTransaccion_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="tabla" Mode="In" Type="String" />
+      <Parameter Name="User" Mode="In" Type="Int32" />
+      <Parameter Name="Rol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ListaDeOrdenCompra" ReturnType="Collection(CPMModel.sp_ListaDeOrdenCompra_Result)" />
+    <FunctionImport Name="sp_ListaDeProduccion" ReturnType="Collection(CPMModel.sp_ListaDeProduccion_Result)" />
+    <FunctionImport Name="SP_ListarTransaccionesPendientes" ReturnType="Collection(CPMModel.SP_ListarTransaccionesPendientes_Result)">
+      <Parameter Name="filtro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_ListarTransaccionesPendientes" IsComposable="true" ReturnType="Collection(CPMModel.FN_ListarTransaccionesPendientes_Result)" />
+    <FunctionImport Name="sp_ListaDeRequesicion" ReturnType="Collection(CPMModel.sp_ListaDeRequesicion_Result)" />
+  </EntityContainer>
+  <EntityType Name="View_ProductosConExistencia">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+      <PropertyRef Name="Nombre" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExistenciaReal" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vw_EmpleadosActivos">
+    <Key>
+      <PropertyRef Name="IdEmpleado" />
+      <PropertyRef Name="IdDepartamento" />
+      <PropertyRef Name="Nombre" />
+    </Key>
+    <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="IdDepartamento" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vw_UsuariosActivos">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+      <PropertyRef Name="IdEmpleado" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Contrasenia" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Rol" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="f_EmpleadoRoll_Result">
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idRoll" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Fn_Cliente_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Nombrecliente" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Pais" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contacto" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="30" />
+    <Property Type="Double" Name="Descuento" Nullable="true" />
+    <Property Type="Double" Name="LimiteCredito" Nullable="true" />
+    <Property Type="Double" Name="Deuda" Nullable="true" />
+    <Property Type="Double" Name="CreditoDisponible" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Fn_Proveedor_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="NombreProveedor" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Pais" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contacto" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="30" />
+    <Property Type="Double" Name="LimiteCredito" Nullable="true" />
+    <Property Type="Double" Name="Deuda" Nullable="true" />
+    <Property Type="Double" Name="CreditoDisponible" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRO_Bodega_Result">
+    <Property Type="Int32" Name="IdBodega" Nullable="false" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="Int32" Name="IdCiudad" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRO_BodegaMovimientos_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Producto" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Bodega" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Tipo" Nullable="true" MaxLength="17" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+    <Property Type="String" Name="Despachador" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PRO_C_Empleados_Result">
+    <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="IdDepartamento" Nullable="false" />
+    <Property Type="String" Name="Departamento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usuario" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PRO_C_Usuario_Result">
+    <Property Type="Int32" Name="Rol" Nullable="false" />
+    <Property Type="Int32" Name="idusuario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRO_CompraDetalle_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Producto" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+    <Property Type="Double" Name="Valor" Nullable="false" />
+    <Property Type="Double" Name="ISV" Nullable="false" />
+    <Property Type="Double" Name="Subtotal" Nullable="false" />
+    <Property Type="DateTime" Name="FechaVencimiento" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PRO_Compras_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Proveedor" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Tipo" Nullable="true" MaxLength="7" />
+    <Property Type="Double" Name="Subtotal" Nullable="true" />
+    <Property Type="Double" Name="ISV" Nullable="true" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRO_Productos_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Producto" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ExistenciaMinima" Nullable="false" />
+    <Property Type="Double" Name="Precio" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRO_ProductosElaborados_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ProductoNecesario" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRO_VentaDetalle_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Producto" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+    <Property Type="Double" Name="Valor" Nullable="false" />
+    <Property Type="Double" Name="ISV" Nullable="false" />
+    <Property Type="Double" Name="Subtotal" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRO_Ventas_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Cliente" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Tipo" Nullable="true" MaxLength="7" />
+    <Property Type="Double" Name="Subtotal" Nullable="true" />
+    <Property Type="Double" Name="ISV" Nullable="true" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_Bancos_Result">
+    <Property Type="Int32" Name="IdBanco" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Cuentas_Result">
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="IdCuenta" Nullable="false" />
+    <Property Type="Int32" Name="IdBanco" Nullable="false" />
+    <Property Type="Double" Name="Saldo" Nullable="false" />
+    <Property Type="String" Name="NCuenta" Nullable="false" MaxLength="15" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="FN_TablaLoca_Result">
+    <Property Type="Int32" Name="IDP" Nullable="true" />
+    <Property Type="String" Name="Producto" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IDB" Nullable="true" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Double" Name="Precio" Nullable="true" />
+    <Property Type="Double" Name="ISV" Nullable="true" />
+    <Property Type="Double" Name="sub" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_ConsultarProductoEnBodega_Result">
+    <Property Type="Int32" Name="IdBodega" Nullable="false" />
+    <Property Type="String" Name="NombreBodega" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_ProductosEnBodegaFecha_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="DateTime" Name="FechaVencimiento" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_ListarCuentas_Result">
+    <Property Type="Int32" Name="IdBanco" Nullable="false" />
+    <Property Type="String" Name="Banco" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdCuenta" Nullable="false" />
+    <Property Type="String" Name="Numero_de_Cuenta" Nullable="false" MaxLength="15" />
+    <Property Type="Double" Name="Saldo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Cheques_Result">
+    <Property Type="Int32" Name="IdCheque" Nullable="false" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="Usuario" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="IdCuenta" Nullable="false" />
+    <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Banco" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="String" Name="Proveedor" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="Valor" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="SP_Deposito_Result">
+    <Property Type="Int32" Name="IdDeposito" Nullable="false" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="Usuario" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="IdCuenta" Nullable="false" />
+    <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Banco" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="IdCliente" Nullable="false" />
+    <Property Type="String" Name="Cliente" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="Valor" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="Fn_ListaReceta_Result">
+    <Property Type="Int32" Name="IdProductoMaterial" Nullable="true" />
+    <Property Type="String" Name="Producto" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Double" Name="Costo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_ListarProducosConOsinReceta_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_ProductoFiltrado_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ExistenciaMinima" Nullable="false" />
+    <Property Type="Double" Name="Precio" Nullable="false" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_ConsultarDetalleTransaccion_Result">
+    <Property Type="Int32" Name="IdCompra" Nullable="false" />
+    <Property Type="Int32" Name="IdBodega" Nullable="false" />
+    <Property Type="String" Name="Bodega" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="Producto" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaVecimiento" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="Valor" Nullable="false" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+    <Property Type="Double" Name="ISV" Nullable="false" />
+    <Property Type="Double" Name="Subtotal" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_ListaDeOrdenCompra_Result">
+    <Property Type="Int32" Name="IdCompra" Nullable="false" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Proceso" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="EstadoPago" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="sp_ListaDeProduccion_Result">
+    <Property Type="Int32" Name="IdCompra" Nullable="false" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Proceso" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="EstadoPago" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="SP_ListarTransaccionesPendientes_Result">
+    <Property Type="String" Name="TipoMovimiento" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="IDMovimiento" Nullable="true" />
+    <Property Type="Int32" Name="UserID" Nullable="true" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="IDSolitado" Nullable="true" />
+    <Property Type="String" Name="ASolicitud" Nullable="true" MaxLength="25" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="FN_ListarTransaccionesPendientes_Result">
+    <Property Type="String" Name="TipoMovimiento" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="IDMovimiento" Nullable="true" />
+    <Property Type="Int32" Name="UserID" Nullable="true" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="IDSolitado" Nullable="true" />
+    <Property Type="String" Name="ASolicitud" Nullable="true" MaxLength="25" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_ListaDeRequesicion_Result">
+    <Property Type="Int32" Name="IdCompra" Nullable="false" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Proceso" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="EstadoPago" Nullable="false" MaxLength="1" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,46 @@
+﻿@model Menusito.Models.ViewModels.ProductoModel
+@{
+    ViewBag.Title = "Editar Producto";
+}
+
+<h2> @ViewBag.Title</h2>
+@using (Html.BeginForm("Editar", "Producto", FormMethod.Post))
+{
+<div class="row">
+    <div class="col-md-12">
+        @Html.HiddenFor(d => d.IdProducto)
+        @Html.LabelFor(d => d.Nombre)
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><span class=" glyphicon glyphicon-user"></span></div>
+                @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(d => d.Nombre, null, new { @class = "text-danger" })
+        </div>
+        <br />
+        @Html.LabelFor(d => d.ExistenciaMinima)
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                @Html.TextBoxFor(d => d.ExistenciaMinima, "", new { @class = "form-control", @type="number", @min = 1 })
+            </div>
+            @Html.ValidationMessageFor(d => d.ExistenciaMinima, null, new { @class = "text-danger" })
+        </div>
+        <br />
+        @Html.LabelFor(d => d.Precio)
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                @Html.TextBoxFor(d => d.Precio, "", new { @class = "form-control",  @type ="number", @min=1  })
+            </div>
+            @Html.ValidationMessageFor(d => d.Precio, null, new { @class = "text-danger"})
+        </div>
+        <br />
+        <div class="form-footer">
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-log-in"></span> Guardar
+            </button>
+        </div>
+    </div>
+</div>
+}

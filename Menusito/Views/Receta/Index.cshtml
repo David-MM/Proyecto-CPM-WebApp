@@ -1,0 +1,111 @@
+﻿@model  Menusito.Models.ViewModels.ResetaModel
+@{
+    ViewBag.Title = "Crear Receta de Producto ";
+    List<SelectListItem> itemsProducto = (List<SelectListItem>)ViewBag.itemsProducto;
+    var Productos = ViewBag.NombreProducto;
+    var IdP = ViewBag.IdProduc;
+}
+
+<h1>@ViewBag.Title @Productos</h1>
+
+@using (Html.BeginForm("Index", "Receta", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <br /><br />
+                      <div class="input-group col-md-12">
+                          @Html.HiddenFor(d => d.IdProducto)
+                          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                          @Html.TextBoxFor(d => d.Producto, "", new { @class = "form-control", @type = "text", @disabled = "disabled", @value = @Productos, Id = @IdP })
+                      </div>
+            </div>
+            <br />
+            <table class="table table-responsive table-sm">
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(d => d.IdProductoE, itemsProducto, "Seleccione Producto", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.Cantidad, "", new { @class = "form-control", @type = "number", @min = "1" })
+                    </td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" id="agregarFila">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Cantidad del producto para elaborar un(a) @Productos</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <tbody id="cuerpo"></tbody>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <br>
+            <div style="text-align: right;" class=" col-md-12">
+                <button type="button" class="btn btn-primary" id="Guardar">
+                    <span class="glyphicon glyphicon-log-in"></span> @ViewBag.Title
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+
+        var list = [];
+        var i = 1;
+
+        $("#agregarFila").click(function () {
+            list.push({
+                IdProducto: $("#IdProducto").val(),
+                IdproductoE: $("#IdProductoE").val(),
+                Producto2: $("#IdProductoE :selected").text(),
+                Cantidad: $("#Cantidad").val()
+            });
+
+            var sumar = 1;
+            var informacion = '';
+            for (var item of list) {
+                informacion +=
+                    `<tr>
+                                    <td  class="hidden">${i}</td>
+                                    <td>${item.Producto2}</td>
+                                    <td>${item.Cantidad}</td>
+                                    <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>
+                                </tr>`;
+                i++;
+            }
+
+            $("#cuerpo").html(informacion);
+
+        });
+
+        $("table").on("click", ".ibtnDel", function (event) {
+            $(this).closest("tr").remove();
+            list.splice($(this).i);
+        });
+
+        $("#Guardar").click(function () {
+
+            var modelData = {
+                IdProducto: $("#IdProducto").val(),
+                lstProductos: list
+            };
+            $.ajax({
+                url: "/Receta/Index",
+                method: "Post",
+                data: { model: modelData },
+                success: function (resp) {
+                    window.location.href = "/Home";
+                }
+            });
+        });
+    </script>
+}

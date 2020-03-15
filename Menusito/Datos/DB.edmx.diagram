@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eddff0836e8341c29fab15ab4b019c4b" Name="Diagram1">
+        <EntityTypeShape EntityType="CPMModel.BANCO" Width="1.5" PointX="6" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.BODEGA" Width="1.5" PointX="7.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.CHEQUE" Width="1.5" PointX="10.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.CIUDAD" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.CLIENTE" Width="1.5" PointX="5.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.COBRO" Width="1.5" PointX="15.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.COMPRA" Width="1.5" PointX="10.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.COMPRADETALLE" Width="1.5" PointX="12.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.CUENTA" Width="1.5" PointX="8.25" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.DEPOSITO" Width="1.5" PointX="10.5" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.EMPLEADO" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.EXISTENCIA" Width="1.5" PointX="12.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.PAGO" Width="1.5" PointX="15.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.PAIS" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.PRODUCCION" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.PRODUCCIONDETALLE" Width="1.5" PointX="12.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.PRODUCTO" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.PROVEEDOR" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.RECETA" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.TRANSACCION" Width="1.5" PointX="15.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.USUARIO" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.VENTA" Width="1.5" PointX="7.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="CPMModel.VENTADETALLE" Width="1.5" PointX="12.75" PointY="24.5" IsExpanded="true" />
+        <AssociationConnector Association="CPMModel.FK_CuentaBanco" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_BodegaCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_BodegaUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CompraDetalleBodega" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ExistenciaBodega" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ProduccionDetalleBodega" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_TransaccionBodega" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_VentaDetalleBodega" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ChequeCuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ChequeProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ChequeUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_PagoCheque" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ClienteCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_Pais" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ProveedorCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_DepositoCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_VentaCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CobroDeposito" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CobroVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CompraDetalleCompra" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CompraProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CompraUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_PagoCompra" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_CompraDetalleProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_DepositoCuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_Departamento" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_DepositoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ExistenciaProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ProduccionDetalleProduccion" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ProduccionProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_ProduccionUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_RecetaProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_TransaccionProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_VentaDetalleProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_VentaUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="CPMModel.FK_VentaDetalleVenta" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CPMModel.View_ProductosConExistencia" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CPMModel.vw_EmpleadosActivos" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CPMModel.vw_UsuariosActivos" Width="1.5" PointX="2.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

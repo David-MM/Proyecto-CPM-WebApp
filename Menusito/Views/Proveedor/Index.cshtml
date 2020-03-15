@@ -1,0 +1,47 @@
+﻿@model List<Menusito.Models.ViewModels.ProveedorModel>
+@{
+    ViewBag.Title = "Lista de Proveedores";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row" style="text-align:right;padding:5px">
+    <a href="~/Proveedor/Agregar" class="btn btn-primary btn-lg glyphicon glyphicon-user"> Agregar</a>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive table-bordered table-sm">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Pais</th>
+                <th>Contacto</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Lim.Credito</th>
+                <th>Deuda</th>
+                <th>Credito</th>
+                <th style="text-align:center">Opciones</th>
+            </tr>
+            @foreach (var elemento in Model)
+            {
+                <tr>
+                    <td>@elemento.ID</td>
+                    <td>@elemento.Nombre</td>
+                    <td>@elemento.Ciudad</td>
+                    <td>@elemento.Pais</td>
+                    <td>@elemento.Contacto</td>
+                    <td>@elemento.Telefono</td>
+                    <td>@elemento.Correo</td>
+                    <td style="text-align:center">@elemento.LimCredito</td>
+                    <td>@elemento.DeudaPagar</td>
+                    <td>@elemento.CreditoDisponible</td>
+                    <td>
+                        <a class="btn btn-warning" href="~/Proveedor/Editar/@elemento.ID">Editar</a>
+                        <a class="btn btn-danger" href="~/Proveedor/EliminarProveedor/@elemento.ID">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model Menusito.Models.ViewModels.BancoModel
+@{
+    ViewBag.Title = "Editar Banco";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Editar", "Banco", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.IdBanco)
+            @Html.LabelFor(d => d.Nombre)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class=" glyphicon glyphicon-user"></span></div>
+                    @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Nombre, null, new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(d => d.Telefono)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Telefono, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Telefono, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.LabelFor(d => d.Correo)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Correo, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Correo, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-in"></span> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}

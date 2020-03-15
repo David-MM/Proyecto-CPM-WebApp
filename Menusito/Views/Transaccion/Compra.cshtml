@@ -1,0 +1,33 @@
+﻿@model List<Menusito.Models.ViewModels.TransaccionModel>
+@{
+    ViewBag.Title = "Transacciones de Compras";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row" style="text-align:right;padding:5px">
+    <a href="~/Cheque/Agregar" class="btn btn-primary btn-lg glyphicon glyphicon-user"> Agregar</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive table-bordered table-sm">
+            <tr>
+                <th>#</th>
+                <th>Nombre Proveedor</th>
+                <th>Fecha</th>
+                <th class ="center">Opciones</th>
+</tr>
+            @foreach (var elemento in Model)
+            {
+        <tr>
+            <td>@elemento.IdOrden</td>
+            <td>@elemento.Nombre</td>
+            <td>@elemento.Fecha</td>
+            <td class="center">
+                <a class="btn btn-primary" href="~/Transaccion/OdenCompra/@elemento.IdOrden"> Producir</a>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>

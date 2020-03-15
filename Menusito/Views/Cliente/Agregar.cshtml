@@ -1,0 +1,77 @@
+﻿@model  Menusito.Models.ViewModels.ClienteModel
+@{
+    ViewBag.Title = "Agregar Cliente";
+    List<SelectListItem> itemsCiudad = (List<SelectListItem>)ViewBag.itemsCiudad;
+    List<SelectListItem> itemsPais = (List<SelectListItem>)ViewBag.itemsPais;
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(d => d.Nombre)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Nombre, null, new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(d => d.Telefono)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Telefono, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Telefono, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.LabelFor(d => d.Contacto)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Contacto, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Contacto, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.LabelFor(d => d.Correo)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Correo, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Correo, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.LabelFor(d => d.LimCredito)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.LimCredito, "", new { @class = "form-control", @type = "number", @min = 0 })
+                </div>
+                @Html.ValidationMessageFor(d => d.LimCredito, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.LabelFor(d => d.Descuento)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Descuento, "", new { @class = "form-control", @type = "number", @min = 0 })
+                </div>
+                @Html.ValidationMessageFor(d => d.Descuento, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.DropDownListFor(d => d.IdPais, itemsPais, "Seleccione Pais", new{@class = "form-control"})
+            <br />
+            @Html.DropDownListFor(d => d.IdCiudad, itemsCiudad, "Seleccione Ciudad", new { @class = "form-control"})
+            <br />
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-in"></span> Guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CPMModelStoreContainer" CdmEntityContainer="CPMEntities">
+    <EntitySetMapping Name="BANCO">
+      <EntityTypeMapping TypeName="CPMModel.BANCO">
+        <MappingFragment StoreEntitySet="BANCO">
+          <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BODEGA">
+      <EntityTypeMapping TypeName="CPMModel.BODEGA">
+        <MappingFragment StoreEntitySet="BODEGA">
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHEQUE">
+      <EntityTypeMapping TypeName="CPMModel.CHEQUE">
+        <MappingFragment StoreEntitySet="CHEQUE">
+          <ScalarProperty Name="IdCheque" ColumnName="IdCheque" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CIUDAD">
+      <EntityTypeMapping TypeName="CPMModel.CIUDAD">
+        <MappingFragment StoreEntitySet="CIUDAD">
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE">
+      <EntityTypeMapping TypeName="CPMModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COBRO">
+      <EntityTypeMapping TypeName="CPMModel.COBRO">
+        <MappingFragment StoreEntitySet="COBRO">
+          <ScalarProperty Name="IdCobro" ColumnName="IdCobro" />
+          <ScalarProperty Name="IdDeposito" ColumnName="IdDeposito" />
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="ValorPagado" ColumnName="ValorPagado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPRA">
+      <EntityTypeMapping TypeName="CPMModel.COMPRA">
+        <MappingFragment StoreEntitySet="COMPRA">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="EstadoPago" ColumnName="EstadoPago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPRADETALLE">
+      <EntityTypeMapping TypeName="CPMModel.COMPRADETALLE">
+        <MappingFragment StoreEntitySet="COMPRADETALLE">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="FechaVecimiento" ColumnName="FechaVecimiento" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUENTA">
+      <EntityTypeMapping TypeName="CPMModel.CUENTA">
+        <MappingFragment StoreEntitySet="CUENTA">
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="NCuenta" ColumnName="NCuenta" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTAMENTO">
+      <EntityTypeMapping TypeName="CPMModel.DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="DEPARTAMENTO">
+          <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPOSITO">
+      <EntityTypeMapping TypeName="CPMModel.DEPOSITO">
+        <MappingFragment StoreEntitySet="DEPOSITO">
+          <ScalarProperty Name="IdDeposito" ColumnName="IdDeposito" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLEADO">
+      <EntityTypeMapping TypeName="CPMModel.EMPLEADO">
+        <MappingFragment StoreEntitySet="EMPLEADO">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXISTENCIA">
+      <EntityTypeMapping TypeName="CPMModel.EXISTENCIA">
+        <MappingFragment StoreEntitySet="EXISTENCIA">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGO">
+      <EntityTypeMapping TypeName="CPMModel.PAGO">
+        <MappingFragment StoreEntitySet="PAGO">
+          <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+          <ScalarProperty Name="IdCheque" ColumnName="IdCheque" />
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="ValorPagado" ColumnName="ValorPagado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAIS">
+      <EntityTypeMapping TypeName="CPMModel.PAIS">
+        <MappingFragment StoreEntitySet="PAIS">
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCCION">
+      <EntityTypeMapping TypeName="CPMModel.PRODUCCION">
+        <MappingFragment StoreEntitySet="PRODUCCION">
+          <ScalarProperty Name="IdProduccion" ColumnName="IdProduccion" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCCIONDETALLE">
+      <EntityTypeMapping TypeName="CPMModel.PRODUCCIONDETALLE">
+        <MappingFragment StoreEntitySet="PRODUCCIONDETALLE">
+          <ScalarProperty Name="IdProduccion" ColumnName="IdProduccion" />
+          <ScalarProperty Name="IdProductoMaterial" ColumnName="IdProductoMaterial" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="FechaVecimiento" ColumnName="FechaVecimiento" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTO">
+      <EntityTypeMapping TypeName="CPMModel.PRODUCTO">
+        <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ExistenciaMinima" ColumnName="ExistenciaMinima" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVEEDOR">
+      <EntityTypeMapping TypeName="CPMModel.PROVEEDOR">
+        <MappingFragment StoreEntitySet="PROVEEDOR">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECETA">
+      <EntityTypeMapping TypeName="CPMModel.RECETA">
+        <MappingFragment StoreEntitySet="RECETA">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdProductoMaterial" ColumnName="IdProductoMaterial" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CPMModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACCION">
+      <EntityTypeMapping TypeName="CPMModel.TRANSACCION">
+        <MappingFragment StoreEntitySet="TRANSACCION">
+          <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="IdOrden" ColumnName="IdOrden" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="CPMModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VENTA">
+      <EntityTypeMapping TypeName="CPMModel.VENTA">
+        <MappingFragment StoreEntitySet="VENTA">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="EstadoCobro" ColumnName="EstadoCobro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VENTADETALLE">
+      <EntityTypeMapping TypeName="CPMModel.VENTADETALLE">
+        <MappingFragment StoreEntitySet="VENTADETALLE">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="FechaVecimiento" ColumnName="FechaVecimiento" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_ProductosConExistencia">
+      <EntityTypeMapping TypeName="CPMModel.View_ProductosConExistencia">
+        <MappingFragment StoreEntitySet="View_ProductosConExistencia">
+          <ScalarProperty Name="ExistenciaReal" ColumnName="ExistenciaReal" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_EmpleadosActivos">
+      <EntityTypeMapping TypeName="CPMModel.vw_EmpleadosActivos">
+        <MappingFragment StoreEntitySet="vw_EmpleadosActivos">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_UsuariosActivos">
+      <EntityTypeMapping TypeName="CPMModel.vw_UsuariosActivos">
+        <MappingFragment StoreEntitySet="vw_UsuariosActivos">
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="f_EmpleadoRoll" FunctionName="CPMModel.Store.f_EmpleadoRoll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.f_EmpleadoRoll_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="idRoll" ColumnName="idRoll" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Fn_Cliente" FunctionName="CPMModel.Store.Fn_Cliente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.Fn_Cliente_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombrecliente" ColumnName="Nombrecliente" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+          <ScalarProperty Name="Deuda" ColumnName="Deuda" />
+          <ScalarProperty Name="CreditoDisponible" ColumnName="CreditoDisponible" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Fn_Proveedor" FunctionName="CPMModel.Store.Fn_Proveedor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.Fn_Proveedor_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+          <ScalarProperty Name="Deuda" ColumnName="Deuda" />
+          <ScalarProperty Name="CreditoDisponible" ColumnName="CreditoDisponible" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_Bodega" FunctionName="CPMModel.Store.PRO_Bodega">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_Bodega_Result">
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_BodegaMovimientos" FunctionName="CPMModel.Store.PRO_BodegaMovimientos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_BodegaMovimientos_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Despachador" ColumnName="Despachador" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_C_Empleados" FunctionName="CPMModel.Store.PRO_C_Empleados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_C_Empleados_Result">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_C_Usuario" FunctionName="CPMModel.Store.PRO_C_Usuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_C_Usuario_Result">
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_CompraDetalle" FunctionName="CPMModel.Store.PRO_CompraDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_CompraDetalle_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_Compras" FunctionName="CPMModel.Store.PRO_Compras">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_Compras_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_Productos" FunctionName="CPMModel.Store.PRO_Productos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_Productos_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="ExistenciaMinima" ColumnName="ExistenciaMinima" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_ProductosElaborados" FunctionName="CPMModel.Store.PRO_ProductosElaborados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_ProductosElaborados_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProductoNecesario" ColumnName="ProductoNecesario" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_VentaDetalle" FunctionName="CPMModel.Store.PRO_VentaDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_VentaDetalle_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRO_Ventas" FunctionName="CPMModel.Store.PRO_Ventas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.PRO_Ventas_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AgregarBanco" FunctionName="CPMModel.Store.sp_AgregarBanco" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarBodega" FunctionName="CPMModel.Store.sp_AgregarBodega" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarCliente" FunctionName="CPMModel.Store.sp_AgregarCliente" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarCuenta" FunctionName="CPMModel.Store.sp_AgregarCuenta" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarEmpleado" FunctionName="CPMModel.Store.sp_AgregarEmpleado" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarProducto" FunctionName="CPMModel.Store.sp_AgregarProducto" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarProveedor" FunctionName="CPMModel.Store.sp_AgregarProveedor" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarReceta" FunctionName="CPMModel.Store.sp_AgregarReceta" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarUsuario" FunctionName="CPMModel.Store.sp_AgregarUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CPMModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="SP_Bancos" FunctionName="CPMModel.Store.SP_Bancos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_Bancos_Result">
+          <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CPMModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="SP_Cuentas" FunctionName="CPMModel.Store.SP_Cuentas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_Cuentas_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="NCuenta" ColumnName="NCuenta" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CPMModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_EditarBanco" FunctionName="CPMModel.Store.sp_EditarBanco" />
+    <FunctionImportMapping FunctionImportName="sp_EditarBodega" FunctionName="CPMModel.Store.sp_EditarBodega" />
+    <FunctionImportMapping FunctionImportName="sp_EditarCliente" FunctionName="CPMModel.Store.sp_EditarCliente" />
+    <FunctionImportMapping FunctionImportName="sp_EditarCuenta" FunctionName="CPMModel.Store.sp_EditarCuenta" />
+    <FunctionImportMapping FunctionImportName="sp_EditarEmpleado" FunctionName="CPMModel.Store.sp_EditarEmpleado" />
+    <FunctionImportMapping FunctionImportName="sp_EditarProducto" FunctionName="CPMModel.Store.sp_EditarProducto" />
+    <FunctionImportMapping FunctionImportName="sp_EditarProveedor" FunctionName="CPMModel.Store.sp_EditarProveedor" />
+    <FunctionImportMapping FunctionImportName="sp_EditarUsuario" FunctionName="CPMModel.Store.sp_EditarUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_Eliminar" FunctionName="CPMModel.Store.sp_Eliminar" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarCliente" FunctionName="CPMModel.Store.sp_EliminarCliente" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CPMModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CPMModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrdenCompra" FunctionName="CPMModel.Store.sp_OrdenCompra" />
+    <FunctionImportMapping FunctionImportName="sp_OrdenCompraDetalle" FunctionName="CPMModel.Store.sp_OrdenCompraDetalle" />
+    <FunctionImportMapping FunctionImportName="sp_OrdenIstTransaccion" FunctionName="CPMModel.Store.sp_OrdenIstTransaccion" />
+    <FunctionImportMapping FunctionImportName="sp_Produccion" FunctionName="CPMModel.Store.sp_Produccion" />
+    <FunctionImportMapping FunctionImportName="sp_ProduccionDetalle" FunctionName="CPMModel.Store.sp_ProduccionDetalle" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CPMModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_Requisito" FunctionName="CPMModel.Store.sp_Requisito" />
+    <FunctionImportMapping FunctionImportName="sp_RequisitoDetalle" FunctionName="CPMModel.Store.sp_RequisitoDetalle" />
+    <FunctionImportMapping FunctionImportName="sp_UpdProcesoCompra" FunctionName="CPMModel.Store.sp_UpdProcesoCompra" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CPMModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="Validar_Usuario" FunctionName="CPMModel.Store.Validar_Usuario" />
+    <FunctionImportMapping FunctionImportName="SP_ConsultarProductoEnBodega" FunctionName="CPMModel.Store.SP_ConsultarProductoEnBodega">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ConsultarProductoEnBodega_Result">
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="NombreBodega" ColumnName="NombreBodega" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ProductosEnBodegaFecha" FunctionName="CPMModel.Store.SP_ProductosEnBodegaFecha">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ProductosEnBodegaFecha_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ListarCuentas" FunctionName="CPMModel.Store.SP_ListarCuentas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ListarCuentas_Result">
+          <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+          <ScalarProperty Name="Banco" ColumnName="Banco" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="Numero_de_Cuenta" ColumnName="Numero de Cuenta" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AgregarCheque" FunctionName="CPMModel.Store.sp_AgregarCheque" />
+    <FunctionImportMapping FunctionImportName="SP_Cheques" FunctionName="CPMModel.Store.SP_Cheques">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_Cheques_Result">
+          <ScalarProperty Name="IdCheque" ColumnName="IdCheque" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+          <ScalarProperty Name="Banco" ColumnName="Banco" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Deposito" FunctionName="CPMModel.Store.SP_Deposito">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_Deposito_Result">
+          <ScalarProperty Name="IdDeposito" ColumnName="IdDeposito" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+          <ScalarProperty Name="Banco" ColumnName="Banco" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AgregarDeposito" FunctionName="CPMModel.Store.sp_AgregarDeposito" />
+    <FunctionImportMapping FunctionImportName="Fn_ListaReceta" FunctionName="CPMModel.Store.Fn_ListaReceta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.Fn_ListaReceta_Result">
+          <ScalarProperty Name="IdProductoMaterial" ColumnName="IdProductoMaterial" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ListarProducosConOsinReceta" FunctionName="CPMModel.Store.SP_ListarProducosConOsinReceta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ListarProducosConOsinReceta_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ProductoFiltrado" FunctionName="CPMModel.Store.SP_ProductoFiltrado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ProductoFiltrado_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ExistenciaMinima" ColumnName="ExistenciaMinima" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ConsultarDetalleTransaccion" FunctionName="CPMModel.Store.SP_ConsultarDetalleTransaccion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ConsultarDetalleTransaccion_Result">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
+          <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="FechaVecimiento" ColumnName="FechaVecimiento" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="ISV" ColumnName="ISV" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListaDeOrdenCompra" FunctionName="CPMModel.Store.sp_ListaDeOrdenCompra">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.sp_ListaDeOrdenCompra_Result">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="EstadoPago" ColumnName="EstadoPago" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListaDeProduccion" FunctionName="CPMModel.Store.sp_ListaDeProduccion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.sp_ListaDeProduccion_Result">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="EstadoPago" ColumnName="EstadoPago" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ListarTransaccionesPendientes" FunctionName="CPMModel.Store.SP_ListarTransaccionesPendientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.SP_ListarTransaccionesPendientes_Result">
+          <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+          <ScalarProperty Name="IDMovimiento" ColumnName="IDMovimiento" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="IDSolitado" ColumnName="IDSolitado" />
+          <ScalarProperty Name="ASolicitud" ColumnName="ASolicitud" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="FN_ListarTransaccionesPendientes" FunctionName="CPMModel.Store.FN_ListarTransaccionesPendientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.FN_ListarTransaccionesPendientes_Result">
+          <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+          <ScalarProperty Name="IDMovimiento" ColumnName="IDMovimiento" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="IDSolitado" ColumnName="IDSolitado" />
+          <ScalarProperty Name="ASolicitud" ColumnName="ASolicitud" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ListaDeRequesicion" FunctionName="CPMModel.Store.sp_ListaDeRequesicion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CPMModel.sp_ListaDeRequesicion_Result">
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+          <ScalarProperty Name="EstadoPago" ColumnName="EstadoPago" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

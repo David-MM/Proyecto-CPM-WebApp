@@ -1,0 +1,33 @@
+﻿@model Menusito.Models.ViewModels.AgregarEmpleadoModel
+@{
+    ViewBag.Title = "Editar Empleado";
+    List<SelectListItem>itemsDepto= (List<SelectListItem>)ViewBag.itemsDepto;
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("EditarEmpleado", "ProyectoFinal", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.idEmpleado)
+            @Html.LabelFor(d => d.Nombre)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Nombre, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            @Html.DropDownListFor(d => d.IdDeptoD, itemsDepto, "Seleccione un Departamento", new { @class = "form-control" })
+            <br />
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-in"></span> Guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+}

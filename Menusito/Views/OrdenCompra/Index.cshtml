@@ -1,0 +1,141 @@
+﻿@model  Menusito.Models.ViewModels.OrdenComparModel
+@{
+    ViewBag.Title = "Nueva Orden de Compra";
+
+    List<SelectListItem> itemsProveedor = (List<SelectListItem>)ViewBag.itemsProveedor;
+    List<SelectListItem> itemsProducto = (List<SelectListItem>)ViewBag.itemsProducto;
+    List<SelectListItem> itemsBodega = (List<SelectListItem>)ViewBag.itemsBodega;
+    var m = ViewBag.Message;
+}
+
+<h1>@ViewBag.Title</h1>
+@using (Html.BeginForm("Index", "OrdenCompra", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <br /><br />
+                @Html.LabelFor(d => d.IdProveedor)
+                <div class="input-group col-md-12">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    @Html.DropDownListFor(d => d.IdProveedor, itemsProveedor, "Seleccione Provedor", new { @class = "form-control" })
+                    <div class="col-md-7 text-danger text-right"><b id="Mensage"></b></div>
+                </div>
+                @Html.ValidationMessageFor(d => d.IdProveedor, null, new { @class = "text-danger" })
+            </div>
+            <br />
+            <table class="table table-responsive table-sm">
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(d => d.IdProducto, itemsProducto, "Seleccione Producto", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(d => d.IdBodega, itemsBodega, "Seleccione Bodega", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.Fecha, "", new { @class = "form-control", @type = "date" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.Valor, "", new { @class = "form-control", @type = "number", @min = "1" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.Cantidad, "", new { @class = "form-control", @type = "number", @min = "1" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.ISV, "", new { @class = "form-control", @type = "number", @step = "0.5", @min = "1", @max = "100" })
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">
+                        <button type="button" class="btn btn-primary" id="agregarFila">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(d => d.IdProducto)</th>
+                    <th class="col-sm-2">@Html.LabelFor(d => d.IdBodega)</th>
+                    <th class="col-md-2">@Html.LabelFor(d => d.Fecha)</th>
+                    <th  class="col-md-1">@Html.LabelFor(d => d.Valor)</th>
+                    <th class="col-md-1">@Html.LabelFor(d => d.Cantidad)</th>
+                    <th class="col-md-1">@Html.LabelFor(d => d.ISV)</th>
+                    <th  class="col-md-1">Sub-T</th>
+                    <th></th>
+                    <tbody id="cuerpo">
+                    </tbody>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <br>
+            <div style="text-align: right;" class=" col-md-12">
+                <button type="button" class="btn btn-primary" id="Guardar">
+                    <span class="glyphicon glyphicon-log-in"></span> @ViewBag.Title
+                </button>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script>
+
+        var list = [];
+        var i = 1;
+
+        $("#agregarFila").click(function () {
+            list.push({
+                IdProveedor: $("#IdProveedor").val(),
+                Proveedor: $("#IdProveedor :selected").text(),
+                IdProducto: $("#IdProducto").val(),
+                Producto: $("#IdProducto :selected").text(),
+                IdBodega: $("#IdBodega").val(),
+                Bodega: $("#IdBodega :selected").text(),
+                Fecha: $("#Fecha").val(),
+                Valor: $("#Valor").val(),
+                Cantidad: $("#Cantidad").val(),
+                ISV: $("#ISV").val()
+            });
+
+            var informacion = '';
+            for (var item of list) {
+                informacion +=
+                    `<tr>
+                                <td  class="hidden">${i}</td>
+                                <td>${item.Producto}</td>
+                                <td>${item.Bodega}</td>
+                                <td>${item.Fecha}</td>
+                                <td>${item.Valor}</td>
+                                <td>${item.Cantidad}</td>
+                                <td>${item.ISV*item.Cantidad * item.Valor }</td>
+                                <td>${item.Cantidad * item.Valor * (1 + item.ISV)}</td>
+                                <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>
+                            </tr>`;
+                i++;
+            }
+
+            $("#cuerpo").html(informacion);
+
+        });
+
+        $("table").on("click", ".ibtnDel", function (event) {
+            $(this).closest("tr").remove();
+            list.splice($(this).i);
+        });
+
+        $("#Guardar").click(function () {
+           
+            var modelData = {
+                IdProveedor: $("#IdProveedor").val(),
+                Fecha: $("#Fecha").val(),
+                DetalleOrendenCompra: list
+            };
+            $.ajax({
+                url: "/OrdenCompra/Index",
+                method: "Post",
+                data: { model: modelData },
+                success: function (resp) {
+                    window.location.href = "/Home";
+                }
+            });
+        });
+    </script>
+}

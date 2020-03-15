@@ -1,0 +1,32 @@
+﻿@model List<Menusito.Models.ViewModels.ListaEmpleadoModel>
+@{
+    ViewBag.Title = "Lista de Empleado";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row" style="text-align:right;padding:5px">
+    <a href="~/ProyectoFinal/AgregarEmpleado" class="btn btn-primary btn-lg glyphicon glyphicon-user"> Agregar</a>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table id="dtBasicExample" class="table table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+            <tr>
+                <th>#</th>
+                <th>Empleado</th>
+                <th style="text-align:center; width:20%">Opciones</th>
+            </tr>
+            @foreach (var elementoEmpleado in Model)
+            {
+                <tr>
+                    <td>@elementoEmpleado.Id</td>
+                    <td>@elementoEmpleado.Nombre</td>
+                    <td style="text-align:center">
+                        <a class="btn btn-warning" href="~/ProyectoFinal/EditarEmpleado/@elementoEmpleado.Id">Editar</a>
+                        &emsp;
+                        <a class="btn btn-danger" href="~/ProyectoFinal/EliminarEmpleado/@elementoEmpleado.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

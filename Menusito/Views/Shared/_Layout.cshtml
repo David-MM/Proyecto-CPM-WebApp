@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - C.P.M.</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav style="margin-top:5px" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">CPM</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li> @Html.ActionLink("Inicio", "Index", "Home")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Compras
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
+                        <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
+                        <li>@Html.ActionLink("Orden De Compra", "Index", "OrdenCompra")</li>
+                        <li>@Html.ActionLink("Reportes", "Index", "ReporteCompra")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Ventas
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+                        <li>@Html.ActionLink("Requisición", "Index", "Requisicion")</li>
+                        <li>@Html.ActionLink("Reportes", "Index", "ReporteVenta")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Producción
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Recetas", "ProductosRecetas", "Receta")</li>
+                        <li>@Html.ActionLink("Producir", "ProductosProducir", "Receta")</li>
+                        <li>@Html.ActionLink("Reportes", "Index", "ReporteProduccion")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Bodega
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Transacciones", "Index", "Transaccion")</li>
+                        <li>@Html.ActionLink("Reportes", "Index", "ReporteBodega")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Finanzas
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Bancos", "Index", "Banco")</li>
+                        <li>@Html.ActionLink("Cuentas", "Index", "Cuenta")</li>
+                        <li>@Html.ActionLink("Cheques", "Index", "Cheque")</li>
+                        <li>@Html.ActionLink("Depositos", "Index", "Deposito")</li>
+                        <li>@Html.ActionLink("Cierres", "Index", "Cierre")</li>
+                        <li>@Html.ActionLink("Reportes", "Index", "ReporteFinanza")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Administracion
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Empleados", "Empleado", "ProyectoFinal")</li>
+                        <li>@Html.ActionLink("Usuario", "Index", "ProyectoFinal")</li>
+                        <li>@Html.ActionLink("Bodegas", "Index", "Bodega")</li>
+                    </ul>
+                </li>
+            </ul>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <button class="btn btn-danger navbar-btn" type="submit">Cerrar Sesion</button>
+            }
+        </div>
+    </nav>
+    <br /><br />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Comercializadora de Productos Médicos - By Jose-Arnol-David</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

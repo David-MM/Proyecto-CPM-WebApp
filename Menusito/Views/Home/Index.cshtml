@@ -1,0 +1,20 @@
+﻿@model Menusito.Models.ViewModels.InicioModel
+@{
+    ViewBag.Title = Session["Nombre"];
+}
+<div class="jumbotron">
+    <h2>Bienvenido  @ViewBag.Message</h2>
+</div>
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-10">
+            <br />
+            <div style="text-align:left">
+                <input value="Cerrar Session" type="submit" class="col-lg-3 btn btn-large btn-danger" />
+            </div>
+        </div>
+    </div>
+}

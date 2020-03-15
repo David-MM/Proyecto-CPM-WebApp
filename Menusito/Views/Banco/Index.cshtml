@@ -1,0 +1,37 @@
+﻿@model List<Menusito.Models.ViewModels.BancoModel>
+@{
+    ViewBag.Title = "Lista de Bancos";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row" style="text-align:right;padding:5px">
+    <a href="~/Banco/Agregar" class="btn btn-primary btn-lg glyphicon glyphicon-user"> Agregar</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive table-bordered table-sm">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th style="text-align:center">Opciones</th>
+            </tr>
+            @foreach (var elemento in Model)
+            {
+        <tr>
+            <td>@elemento.IdBanco</td>
+            <td>@elemento.Nombre</td>
+            <td>@elemento.Telefono</td>
+            <td>@elemento.Correo</td>
+            <td>
+                <a class="btn btn-warning" href="~/Banco/Editar/@elemento.IdBanco">Editar</a>
+                <a class="btn btn-danger" href="~/Banco/EliminarBanco/@elemento.IdBanco">Eliminar</a>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+

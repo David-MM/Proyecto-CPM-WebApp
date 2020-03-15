@@ -1,0 +1,44 @@
+﻿@model  Menusito.Models.ViewModels.AgregarUsuarioModel
+@{
+    ViewBag.Title = "Editar Usuario";
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> itemsEmp = (List<SelectListItem>)ViewBag.itemsEmp;
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Editar", "ProyectoFinal", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.Id)
+            @Html.LabelFor(d => d.Usuario)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    @Html.TextBoxFor(d => d.Usuario, "", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Usuario, null, new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(d => d.Contra)
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    @Html.TextBoxFor(d => d.Contra, "", new { @class = "form-control", @type = "Password" })
+                </div>
+                @Html.ValidationMessageFor(d => d.Contra, null, new { @class = "text-danger" })
+            </div>
+            @Html.DropDownListFor(d => d.IdRol, items, "Seleccione un Rol", new { @class = "form-control" })
+            <br />
+            @Html.DropDownListFor(d => d.IdEmp, itemsEmp, "Seleccione un Empleado", new { @class = "form-control" })
+            <br />
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-in"></span> Guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+}
+

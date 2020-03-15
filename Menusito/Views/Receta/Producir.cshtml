@@ -1,0 +1,61 @@
+﻿@model  Menusito.Models.ViewModels.ResetaModel
+@{
+    ViewBag.Title = "Producir  ";
+    List<SelectListItem> itemsBodega = (List<SelectListItem>)ViewBag.itemsBodega;
+    var Producto = ViewBag.NombreProducto;
+}
+
+<h1>@ViewBag.Title @Producto</h1>
+
+@using (Html.BeginForm("Producir", "Receta", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <br /><br />
+                @Html.HiddenFor(d => d.IdProducto)
+                @Html.HiddenFor(d => d.lstProductos)
+                @Html.LabelFor(d => d.IdProducto)
+                <div class="input-group col-md-12">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    @Html.TextBoxFor(d => d.Producto, "", new { @class = "form-control", @type = "text", @disabled = "disabled", @value = @Producto })
+                </div>
+                Cantidad A Elaborar
+                <div class="input-group col-md-12">
+                    @Html.TextBoxFor(d => d.Cantidad, "", new { @class = "form-control", @type = "number", @min = "1" })
+                </div>
+                Bodega a donde se almacenara
+                <div class="input-group col-md-12">
+                    @Html.DropDownListFor(d => d.IdBodega, itemsBodega, "Seleccione la Bodega", new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <table class="table table-responsive table-sm">
+                <tr>
+                    <th>#</th>
+                    <th>Producto</th>
+                    <th>Cantidad por Unidad</th>
+                    <th>Costo por Unidad</th>
+                    <th></th>
+                </tr>
+                @foreach (var elemento in Model.lstProductos)
+                {
+                    <tr>
+                        <td>@elemento.IdproductoE</td>
+                        <td>@elemento.Producto2</td>
+                        <td>@elemento.Cantidad</td>
+                        <td>@elemento.Costo</td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <br />
+            <br>
+            <div style="text-align: right;" class=" col-md-12">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-in"></span> @ViewBag.Title
+                </button>
+            </div>
+        </div>
+    </div>
+}

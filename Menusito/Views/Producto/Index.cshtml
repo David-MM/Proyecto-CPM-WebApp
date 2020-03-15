@@ -1,0 +1,36 @@
+﻿@model  List<Menusito.Models.ViewModels.ProductoModel>
+@{
+    ViewBag.Title = "Listado de Productos";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row" style="text-align:right; padding: 5px;">
+    <a href="~/Producto/Agregar" class="btn btn-primary btn-lg glyphicon glyphicon-user"> Agregar</a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive table-bordered table-sm">
+            <tr>
+                <th>#</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Existencia Minimia</th>
+                <th class="center">Opciones</th>
+            </tr>
+            @foreach (var elemento in Model)
+            {
+                <tr>
+                    <td>@elemento.IdProducto</td>
+                    <td>@elemento.Nombre</td>
+                    <td>@elemento.Precio</td>
+                    <td>@elemento.ExistenciaMinima</td>
+                    <td class="center">
+                        <a class="btn btn-warning" href="~/Producto/Editar/@elemento.IdProducto"> Editar</a>
+                        <a class="btn btn-danger" href="~/Producto/EliminarProducto/@elemento.IdProducto"> Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

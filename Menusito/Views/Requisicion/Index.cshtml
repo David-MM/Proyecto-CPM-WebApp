@@ -1,0 +1,171 @@
+﻿@model  Menusito.Models.ViewModels.RequisicioModel
+@{
+    ViewBag.Title = "Crear Requisicion";
+    List<SelectListItem> itemsCliente = (List<SelectListItem>)ViewBag.itemsCliente;
+    List<SelectListItem> itemsProducto = (List<SelectListItem>)ViewBag.itemsProducto;
+    List<SelectListItem> itemsBodega = (List<SelectListItem>)ViewBag.itemsBodega;
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Index", "Requisicion", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(d => d.IdCliente)
+                    </td>
+                    <td>
+                        @Html.LabelFor(d => d.IdProducto)
+                    </td>
+                    <td>
+                        @Html.LabelFor(d => d.IdBodega)
+                    </td>
+                    <td>
+                        @Html.LabelFor(d => d.Fecha)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(d => d.IdCliente, itemsCliente, "Seleccione Cliente", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(d => d.IdProducto, itemsProducto, "Seleccione Producto", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(d => d.IdBodega, itemsBodega, "Seleccione Bodega", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.Fecha, "", new { @class = "form-control", @type = "date" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(d => d.Valor)
+                    </td>
+                    <td>
+                        @Html.LabelFor(d => d.Cantidad)
+                    </td>
+                    <td>
+                        @Html.LabelFor(d => d.ISV)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.TextBoxFor(d => d.Valor, "", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.Cantidad, "", new { @class = "form-control", @type = "number", @min = "1", @max = "100" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(d => d.ISV, "", new { @class = "form-control", @type = "number", @step = "0.05", @min = "1", @max = "100" })
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">
+                        <button type="button" class="btn btn-primary" id="agregarFila">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-responsive table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>ISV</th>
+                                <th>Descuento</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-footer">
+                <button type="button" class="btn btn-primary" id="Guardar">
+                    <span class="glyphicon glyphicon-log-in"></span> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        
+        var list = [];
+
+        $("#agregarFila").click(function () {
+            list.push({
+                IdCliente: $("#IdCliente").val(),
+                Cliente: $("#IdCliente :selected").text(),
+                IdProducto: $("#IdProducto").val(),
+                Producto: $("#IdProducto :selected").text(),
+                IdBodega:  $("#IdBodega").val(),
+                Bodega: $("#IdBodega :selected").text(),
+                Fecha: $("#Fecha").val(),
+                Valor: $("#Valor").val(),
+                Cantidad: $("#Cantidad").val(),
+                ISV: $("#ISV").val()
+            });
+
+            var informacion = '';
+            var i = 1;
+            for (var item of list) {
+                informacion += 
+                    `<tr>
+                        <td>${i}</td>
+                        <td>${item.Producto}</td>
+                        <td>${item.Cantidad}</td>
+                        <td>${item.Valor}</td>
+                        <td>${item.ISV}</td>
+                        <td></td>
+                        <td>${item.Cantidad*item.Valor*item.ISV}</td>
+                    </tr>`;
+                i++;
+            }
+
+            $("#cuerpo").html(informacion);
+        });
+
+        $("#IdProducto").on("change",(function () {
+            $.ajax({
+                url: '/Requisicion/Producto',
+                method: "Get",
+                data: { IdProducto: $("#IdProducto").val() },
+                success: function (resp) {
+                    var options = '';
+                    for (item of resp) {
+                        options += `<option value="${item.IdBodega}">${item.NombreBodega}</option>`;
+                    }
+                    $("#IdBodega").html(options);
+                }
+            });
+        }));
+
+        $("#Guardar").click(function () {
+           
+            var modelData = {
+                IdCliente: $("#IdCliente").val(),
+                Fecha: $("#Fecha").val(),
+                DetalleRequisicion: list
+            };
+            $.ajax({
+                url: "/Requisicion/Index",
+                method: "Post",
+                data: { model: modelData },
+                success: function (resp) {
+                    window.location.href="/Home"
+                }
+            });
+        });
+    </script>
+}
